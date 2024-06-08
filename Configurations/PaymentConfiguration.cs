@@ -2,17 +2,17 @@
 
 public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 {
-    public void Configure(EntityTypeBuilder<Payment> builder)
+    public void Configure(EntityTypeBuilder<Discount> builder)
     {
-        builder.HasKey(p => p.IdPayment);
-        builder.Property(p => p.Date).IsRequired();
+        builder.HasKey(d => d.IdDiscount);
+        builder.Property(d => d.IdDiscount).ValueGeneratedOnAdd();
+        builder.Property(d => d.Value).IsRequired();
+        builder.Property(d => d.DateFrom).IsRequired();
+        builder.Property(d => d.DateTo).IsRequired();
 
-        builder.HasOne(p => p.Client)
-            .WithMany(c => c.Payments)
-            .HasForeignKey(p => p.IdClient);
-
-        builder.HasOne(p => p.Subscription)
-            .WithMany(s => s.Payments)
-            .HasForeignKey(p => p.IdSubscription);
+        builder.HasOne(d => d.Subscription)
+            .WithMany(sub => sub.Discounts)
+            .HasForeignKey(d => d.IdSubscription)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

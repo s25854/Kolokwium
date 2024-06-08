@@ -1,5 +1,6 @@
 ﻿using WebApplication1.Models;
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Configurations;
 
 namespace WebApplication1.Context;
 
@@ -18,6 +19,12 @@ public class Context: DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(Program).Assembly);
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfiguration(new ClientConfiguration());
+        modelBuilder.ApplyConfiguration(new SaleConfiguration());
+        modelBuilder.ApplyConfiguration(new SubscriptionConfiguration());
+        modelBuilder.ApplyConfiguration(new DiscountConfiguration());
+        modelBuilder.ApplyConfiguration(new PaymentConfiguration());
     }
 }

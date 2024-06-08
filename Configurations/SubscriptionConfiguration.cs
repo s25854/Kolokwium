@@ -4,22 +4,26 @@ public class SubscriptionConfiguration : IEntityTypeConfiguration<Subscription>
 {
     public void Configure(EntityTypeBuilder<Subscription> builder)
     {
-        builder.HasKey(s => s.IdSubscription);
-        builder.Property(s => s.Name).HasMaxLength(100).IsRequired();
-        builder.Property(s => s.RenewalPeriod).IsRequired();
-        builder.Property(s => s.EndTime).IsRequired();
-        builder.Property(s => s.Price).HasColumnType("money").IsRequired();
+        builder.HasKey(sub => sub.IdSubscription);
+        builder.Property(sub => sub.IdSubscription).ValueGeneratedOnAdd();
+        builder.Property(sub => sub.Name).IsRequired().HasMaxLength(100);
+        builder.Property(sub => sub.RenewalPeriod).IsRequired();
+        builder.Property(sub => sub.EndTime).IsRequired();
+        builder.Property(sub => sub.Price).IsRequired().HasColumnType("money");
 
-        builder.HasMany(s => s.Sales)
+        builder.HasMany(sub => sub.Sales)
             .WithOne(s => s.Subscription)
-            .HasForeignKey(s => s.IdSubscription);
+            .HasForeignKey(s => s.IdSubscription)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasMany(s => s.Discounts)
+        builder.HasMany(sub => sub.Discounts)
             .WithOne(d => d.Subscription)
-            .HasForeignKey(d => d.IdSubscription);
+            .HasForeignKey(d => d.IdSubscription)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasMany(s => s.Payments)
+        builder.HasMany(sub => sub.Payments)
             .WithOne(p => p.Subscription)
-            .HasForeignKey(p => p.IdSubscription);
+            .HasForeignKey(p => p.IdSubscription)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
