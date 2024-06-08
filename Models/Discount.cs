@@ -9,5 +9,5 @@ public class Discount
     public DateTime DateFrom { get; set; }
     public DateTime DateTo { get; set; }
 
-    public Subscription Subscription { get; set; }
+    public Subscriptions Subscription { get; set; }
 }

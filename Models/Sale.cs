@@ -10,5 +10,5 @@ public class Sale
     public DateTime CreatedAt { get; set; }
 
     public Client Client { get; set; }
-    public Subscription Subscription { get; set; }
+    public Subscriptions Subscription { get; set; }
 }
