@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Subscriptions
+public class Subscription
 {
     public int IdSubscription { get; set; }
     public string Name { get; set; }

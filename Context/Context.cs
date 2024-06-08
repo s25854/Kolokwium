@@ -14,7 +14,7 @@ public class Context: DbContext
     public DbSet<Discount> Discounts { get; set; }
     public DbSet<Payment> Payments { get; set; }
     public DbSet<Sale> Sales { get; set; }
-    public DbSet<Subscriptions> Subscription { get; set; }
+    public DbSet<Subscription> Subscriptions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

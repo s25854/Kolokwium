@@ -1,8 +1,8 @@
 ﻿namespace WebApplication1.Models;
 
-public class SubscriptionsConfiguration : IEntityTypeConfiguration<Subscriptions>
+public class SubscriptionConfiguration : IEntityTypeConfiguration<Subscription>
 {
-    public void Configure(EntityTypeBuilder<Subscriptions> builder)
+    public void Configure(EntityTypeBuilder<Subscription> builder)
     {
         builder.HasKey(s => s.IdSubscription);
         builder.Property(s => s.Name).HasMaxLength(100).IsRequired();
